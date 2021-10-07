@@ -35,6 +35,7 @@ function nextSequence() {
   playSound(randomChosenColour);
 }
 
+// サウンド鳴らす
 function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
@@ -47,6 +48,7 @@ function animatePress(currentColor) {
   }, 100);
 }
 
+// チェックする
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     console.log("success");
@@ -63,5 +65,13 @@ function checkAnswer(currentLevel) {
       $("body").removeClass("game-over");
     }, 200);
     $("#level-title").text("Game Over, Press Any Key to Restart");
+    startOver();
   }
+}
+
+// ゲームオーバー後、データリセット
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
 }
